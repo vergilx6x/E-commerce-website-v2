@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Category - E-Shop{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Category: {{ category.name }}</h2>
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card border-light shadow-sm">
+                        <a href="{{ url_for('products.product_detail', product_id=product.id) }}">
+                            <img src="{{ product.image_url or url_for('static/images', filename='default_product_image.jpg') }}" class="card-img-top" alt="{{ product.name }}">
+                        </a>
+                        <div class="card-body">
+                            <a href="{{ url_for('products.product_detail', product_id=product.id) }}" class="text-decoration-none text-dark">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                            </a>
+                            <p class="card-text">${{ product.price }}</p>
+                            <div class="d-flex">
+                                <form action="" method="post" class="me-2">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                                </form>
+                                <form action="" method="post">
+                                    <button type="submit" class="btn btn-secondary"><i class="fas fa-heart"></i> Add to Favorites</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No products found in this category.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
