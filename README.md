@@ -115,3 +115,5 @@ python3 -m run.py
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Screenshots:
+
+![Product screenshot](.app/static/images/home_page1.png)
