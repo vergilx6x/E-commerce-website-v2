@@ -32,26 +32,69 @@ This application offers a fully functional e-commerce platform where users can:
 
 ```bash
 .
-├── main.py
-├── models/
-│   ├── base_model.py
-│   ├── cart.py
-│   ├── category.py
-│   ├── product.py
-│   ├── user.py
-│   └── ...
-├── web_flask/
-│   ├── app.py
-│   ├── static/
-│   │   ├── css/
-│   │   ├── images/
-│   │   └── uploads/
-│   ├── templates/
-│   │   ├── base.html
-│   │   ├── home.html
-│   │   └── ...
-│   └── ...
-└── setup_db.sh
+├── app
+│   ├── auth
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── cart
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── favorite
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── home
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── __init__.py
+│   ├── models
+│   │   ├── base_model.py
+│   │   ├── cart_item.py
+│   │   ├── cart.py
+│   │   ├── category.py
+│   │   ├── engine
+│   │   │   ├── db_engine.py
+│   │   │   └── __init__.py
+│   │   ├── favorite.py
+│   │   ├── __init__.py
+│   │   ├── order_item.py
+│   │   ├── order.py
+│   │   ├── product.py
+│   │   └── user.py
+│   ├── order
+│   │   └── __init__.py
+│   ├── product
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── static
+│   └── templates
+│       ├── base1.html
+│       ├── base.html
+│       ├── cart.html
+│       ├── category.html
+│       ├── edit_profile.html
+│       ├── favorites.html
+│       ├── home.html
+│       ├── index.html
+│       ├── login.html
+│       ├── product_detail.html
+│       ├── register.html
+│       └── user_profile.html
+├── config.py
+├── data_dump.py
+├── env_bash.sh
+├── env_test_bash.sh
+├── env_variabble.py
+├── README.md
+├── requirements.txt
+├── run.py
+├── setup_db.sh
+├── setup_db_test.sh
+└── tests
+    ├── test_db_storage.py
+    ├── test_routes.py
+    └── test_user.py
+
+12 directories, 49 files
 
 ```
 
