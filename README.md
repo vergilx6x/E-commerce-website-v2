@@ -63,33 +63,33 @@ git clone https://github.com/vergilx6x/E-commerce-website.git
 cd E-commerce-website
 ```
 
-- 2-Install Python 3 (if not already installed):
+- 2- Install Python 3 (if not already installed):
   - [Python Installation Guide](https://www.python.org/downloads/).
 
-- 3-Set up a virtual environment:
+- 3- Set up a virtual environment:
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-- 4-Install required packages:
+- 4- Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
-- 5-Install MySQL (if not installed):
+- 5- Install MySQL (if not installed):
   - Follow instructions for your operating system on the [MySQL installation page](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/).
 
-- 6-Set up the database:
+- 6- Set up the database:
   - Modify your database credentials in the config file (ensure your MySQL server is running).
 ```bash
 bash setup_db.sh
 ```
 
-- 7-Run the Flask application:
+- 7- Run the Flask application:
 ```bash
 python3 -m run.py
 ```
-- 8-Access the app:
+- 8- Access the app:
   - Visit: http://localhost:5000
   
 ## Usage
