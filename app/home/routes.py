@@ -4,11 +4,11 @@ from app.models import storage
 from app.models.product import Product
 from app.models.category import Category
 
-bp = Blueprint('home', __name__)
+
+from app.home import bp as home_bp
 
 
-
-@bp.route('/home', strict_slashes=False)
+@home_bp.route('/home', strict_slashes=False)
 def home():
     categories = storage.all(Category).values()
     all_products = list(storage.all(Product).values())
@@ -17,7 +17,7 @@ def home():
 
     return render_template('home.html', categories=categories, new_products=new_products, all_products=all_products)
 
-@bp.route('/home/category/<string:category_id>')
+@home_bp.route('/home/category/<string:category_id>')
 def category(category_id):
     category = storage.get(Category, category_id)
     if category:

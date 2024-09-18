@@ -6,7 +6,7 @@ def create_app():
     app.config.from_object('config.Config')
 
 
-    from app.routes import bp as home_bp
+    from app.home import bp as home_bp
     from app.auth import bp as auth_bp
     from app.product import bp as product_bp
     from app.cart import bp as cart_bp
