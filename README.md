@@ -64,7 +64,7 @@ cd E-commerce-website
 ```
 
 - 2-Install Python 3 (if not already installed):
- - [Python Installation Guide](https://www.python.org/downloads/).
+  - [Python Installation Guide](https://www.python.org/downloads/).
 
 - 3-Set up a virtual environment:
 ```bash
