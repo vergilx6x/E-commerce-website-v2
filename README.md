@@ -55,8 +55,6 @@ This application offers a fully functional e-commerce platform where users can:
 
 ```
 
-## Project Structure
-
 ## Installation
 
 - 1- Clone the repository:
