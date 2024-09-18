@@ -4,10 +4,10 @@ An e-commerce web application built with Flask, designed to allow users to brows
 
 ## Project Links
 
-- **Deployed Site**: E-commerce Web Application.
-- **GitHub Repository**: Project GitHub.
-- **Landing Page**: Landing Page.
-- **Author LinkedIn**: Mohamed Amine Thami.
+- **Deployed Site**: [E-commerce Web Application](https://developmentenv.tech/home).
+- **GitHub Repository**: [Project GitHub](https://github.com/vergilx6x/E-commerce-website-v2.git).
+- **Landing Page**: [Landing Page](https://vergilx6x.github.io/E-commerce-website/).
+- **Author LinkedIn**: [Mohamed Amine Thami](https://www.linkedin.com/in/mohamed-amine-thami-526b9b280/).
 
 ## Introduction
 
@@ -64,8 +64,7 @@ cd E-commerce-website
 ```
 
 - 2-Install Python 3 (if not already installed):
-
-  Python Installation Guide
+ - [Python Installation Guide](https://www.python.org/downloads/).
 
 - 3-Set up a virtual environment:
 ```bash
@@ -78,10 +77,10 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 - 5-Install MySQL (if not installed):
-  Follow instructions for your operating system on the MySQL installation page.
+  - Follow instructions for your operating system on the [MySQL installation page](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/).
 
 - 6-Set up the database:
-  Modify your database credentials in the config file (ensure your MySQL server is running).
+  - Modify your database credentials in the config file (ensure your MySQL server is running).
 ```bash
 bash setup_db.sh
 ```
@@ -91,7 +90,7 @@ bash setup_db.sh
 python3 -m run.py
 ```
 - 8-Access the app:
-  Visit: http://localhost:5000
+  - Visit: http://localhost:5000
   
 ## Usage
 
@@ -112,6 +111,7 @@ python3 -m run.py
 - Flask-Login - User session management for Flask.
 
 ## Licensing
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Screenshots:
