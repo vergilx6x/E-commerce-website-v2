@@ -160,3 +160,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Screenshots:
 
 ![Product screenshot](./app/static/images/home_page1.png)
+
+## About
+
+This project aims to create a platform where users can find high-quality gadgets and special items designed to enhance productivity and lifestyle. Emphasizing quality over quantity, the platform will feature carefully selected products that genuinely add value, avoiding unnecessary or low-quality options. Developed independently with plans to expand the team, the project utilizes Python with Flask, MySQL, and SQLAlchemy for the backend, and HTML, CSS, JavaScript, and Bootstrap for the frontend. Key features include secure user accounts, a shopping cart, favorites, and order tracking. Key challenges included designing effective database models and handling diverse user scenarios, which highlighted the importance of thorough planning and early implementation of unit tests. The project is inspired by the need for reliable tools that improve everyday life, addressing gaps in both local and online markets.
