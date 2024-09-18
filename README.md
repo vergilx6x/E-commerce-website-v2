@@ -116,4 +116,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Screenshots:
 
-![Product screenshot](.app/static/images/home_page1.png)
+![Product screenshot](./app/static/images/home_page1.png)
