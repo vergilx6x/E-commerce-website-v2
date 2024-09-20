@@ -75,8 +75,8 @@ def edit_profile():
                 user.image_url = save_image(image, user.id)
             storage.save()
             flash('Profile updated successfully.', 'success')
-            return redirect(url_for('user_profile'))
+            return redirect(url_for('authentication.user_profile'))
         return render_template('edit_profile.html', user=user)
     else:
         flash('You need to log in to edit your profile.', 'warning')
-        return redirect(url_for('login'))
+        return redirect(url_for('authentication.login'))

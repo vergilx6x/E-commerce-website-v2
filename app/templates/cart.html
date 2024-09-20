@@ -23,7 +23,7 @@
             </div>
             {% endfor %}
             <div class="col-12 mt-5 text-center"> <!-- Increase margin-top here -->
-                <form action="" method="post">
+                <form action="{{ url_for('carts.checkout') }}" method="post">
                     <button type="submit" style="margin-bottom: 10px;" class="btn btn-primary btn-lg">Place Order</button>
                 </form>
             </div>

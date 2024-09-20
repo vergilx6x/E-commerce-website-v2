@@ -4,6 +4,8 @@ from app.models import storage
 from app.models.user import User
 from app.models.cart import Cart
 from app.models.cart_item import Cart_item
+from app.models.order import Order
+from app.models.order_item import Order_item
 
 
 from app.cart import bp as cart_bp
@@ -113,4 +115,51 @@ def remove_from_cart(product_id):
         return redirect(url_for('carts.cart'))
     else:
         flash('You need to log in to remove items from your cart.', 'warning')
+        return redirect(url_for('authentication.login'))
+    
+@cart_bp.route('/checkout', methods=['POST'])
+def checkout():
+    if 'user_id' in session:
+        user = storage.get(User, session['user_id'])
+        if user:
+            # Retrieve the user's cart
+            cart = next((c for c in storage.all(Cart).values() if c.user_id == user.id), None)
+            if cart:
+                cart_items = [item for item in storage.all(Cart_item).values() if item.cart_id == cart.id]
+                
+                if cart_items:
+                    # Calculate total amount
+                    total_amount = sum(item.product.price * item.quantity for item in cart_items)
+                    
+                    # Create a new order
+                    new_order = Order(user_id=user.id, status='pending', total_amount=total_amount)
+                    storage.new(new_order)
+                    
+                    # Add order items
+                    for item in cart_items:
+                        order_item = Order_item(
+                            order_id=new_order.id,
+                            product_id=item.product_id,
+                            price=item.product.price,  # Use price from the Product object
+                            quantity=item.quantity
+                        )
+                        storage.new(order_item)
+                    
+                    # Remove items from cart
+                    storage.delete(cart)
+                    for item in cart_items:
+                        storage.delete(item)
+                    
+                    storage.save()
+                    flash('Order placed successfully.', 'success')
+                    return redirect(url_for('orders.user_orders', user_id=user.id))
+                else:
+                    flash('Your cart is empty.', 'warning')
+            else:
+                flash('No cart found for the user.', 'error')
+        else:
+            flash('User not found. Please log in again.', 'error')
+            return redirect(url_for('authentication.login'))
+    else:
+        flash('You need to log in to place an order.', 'warning')
         return redirect(url_for('authentication.login'))

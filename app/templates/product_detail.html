@@ -15,15 +15,15 @@
             <p>Available Quantity: {{ product.quantity }}</p>
 
             <div class="d-flex mb-4">
-                <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post" class="me-2">
+                <form action="{{ url_for('carts.add_to_cart', product_id=product.id) }}" method="post" class="me-2">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                 </form>
-                <form action="{{ url_for('add_to_favorites', product_id=product.id) }}" method="post">
+                <form action="{{ url_for('favorites.add_to_favorites', product_id=product.id) }}" method="post">
                     <button type="submit" class="btn btn-secondary"><i class="fas fa-heart"></i> Add to Favorites</button>
                 </form>
             </div>
 
-            <a href="{{ url_for('home') }}" class="btn btn-light">Back to Home</a>
+            <a href="{{ url_for('home.home') }}" class="btn btn-light">Back to Home</a>
         </div>
     </div>
 </div>

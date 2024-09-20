@@ -17,7 +17,7 @@ def favorites():
         return render_template('favorites.html', favorite_items=user_favorites)
     else:
         flash('You need to log in to access favorites.', 'warning')
-        return redirect(url_for('login'))
+        return redirect(url_for('authentication.login'))
     
 @favorite_bp.route('/add_to_favorites/<string:product_id>', methods=['POST'])
 def add_to_favorites(product_id):
@@ -58,8 +58,8 @@ def remove_from_favorites(product_id):
                 flash('Product not found in favorites.', 'error')
         else:
             flash('User not found. Please log in again.', 'error')
-        return redirect(url_for('favorites'))
+        return redirect(url_for('favorites.favorites'))
     else:
         flash('You need to log in to remove items from favorites.', 'warning')
-        return redirect(url_for('login'))
+        return redirect(url_for('authentication.login'))
 
