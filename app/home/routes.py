@@ -9,6 +9,7 @@ from app.home import bp as home_bp
 
 
 @home_bp.route('/home', strict_slashes=False)
+@home_bp.route('/', strict_slashes=False)
 def home():
     categories = storage.all(Category).values()
     all_products = list(storage.all(Product).values())

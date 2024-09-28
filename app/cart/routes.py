@@ -163,3 +163,20 @@ def checkout():
     else:
         flash('You need to log in to place an order.', 'warning')
         return redirect(url_for('authentication.login'))
+    
+@cart_bp.route('/cart_count', methods=['GET'])
+def cart_count():
+    if 'user_id' in session:
+        user = storage.get(User, session['user_id'])
+        if user:
+            user_cart = next((cart for cart in storage.all(Cart).values() if cart.user_id == user.id), None)
+            
+            if user_cart:
+                cart_items = [item for item in storage.all(Cart_item).values() if item.cart_id == user_cart.id]
+                return jsonify({'count': len(cart_items)}), 200
+            else:
+                return jsonify({'count': 0}), 200
+        else:
+            return jsonify({'count': 0}), 401
+    else:
+        return jsonify({'count': 0}), 403

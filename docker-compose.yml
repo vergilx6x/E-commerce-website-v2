@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  ecommercewebsitev2:
+    image: ecommercewebsitev2
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000

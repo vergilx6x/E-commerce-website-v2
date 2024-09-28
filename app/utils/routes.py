@@ -25,15 +25,26 @@ def save_image(file, identifier=None):
 
 @utils_bp.route('/search', methods=['GET'])
 def search():
-    query = request.args.get('query')
+    # query = request.args.get('query')
+    query = request.args.get('query', '')
     if not query:
         flash('Please enter a search query.', 'warning')
         return redirect(url_for('home.home'))
+    
+    
+    page = request.args.get('page', 1, type=int)
+    products = [p for p in storage.all(Product).values() if query.lower() in p.name.lower()]
+    
+    # Pagination settings
+    per_page = 6
+    total_products = len(products)
+    paginated_products = products[(page - 1) * per_page:page * per_page]
+
 
     # Search for products
-    products = [p for p in storage.all(Product).values() if query.lower() in p.name.lower()]
+    # products = [p for p in storage.all(Product).values() if query.lower() in p.name.lower()]
 
     # Search for categories
     categories = [c for c in storage.all(Category).values() if query.lower() in c.name.lower()]
 
-    return render_template('search_results.html', products=products, categories=categories, query=query)
+    return render_template('search_results.html', query=query, products=paginated_products, total_products=total_products, page=page, per_page=per_page, categories=categories)

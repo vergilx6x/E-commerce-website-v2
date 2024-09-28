@@ -1,0 +1,85 @@
+# Use the latest Ubuntu Server image
+FROM ubuntu:latest
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Update the package list and install apt-utils, Python, pip, venv, pkg-config, and MySQL development libraries
+RUN apt-get update && apt-get install -y \
+    apt-utils \
+    mysql-server \
+    python3 \
+    python3-pip \
+    python3-venv \
+    pkg-config \
+    libmysqlclient-dev \
+    build-essential \
+    && apt-get clean
+
+# Create a non-root user with a specified name
+ARG USERNAME=admin
+RUN adduser --disabled-password --gecos "" $USERNAME
+
+# Set a password for the user
+RUN echo "$USERNAME:vergil" | chpasswd
+# Set the root password
+RUN echo "root:Vergil" | chpasswd
+
+# Set up the working directory
+WORKDIR /home/$USERNAME/app
+
+# Create the virtual environment as root
+RUN python3 -m venv venv
+
+# Change ownership of the app directory to the non-root user
+RUN chown -R $USERNAME:$USERNAME /home/$USERNAME/app
+
+# Switch to the non-root user
+USER $USERNAME
+
+# Install dependencies into the virtual environment
+COPY requirements.txt /home/$USERNAME/app/
+RUN venv/bin/pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application files
+COPY . /home/$USERNAME/app/
+
+# Expose the necessary ports
+EXPOSE 5000
+EXPOSE 80
+
+
+# Use the Ubuntu image as the base
+FROM ubuntu:22.04
+
+# Step 1: Install required packages including MySQL server
+RUN apt-get update && apt-get install -y \
+    mysql-server \
+    python3 \
+    python3-pip \
+    pkg-config \
+    default-libmysqlclient-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+    
+# Expose MySQL and Flask ports
+EXPOSE 3306
+EXPOSE 5000
+
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
+
+# Install pip requirements
+COPY requirements.txt ./
+RUN python3 -m pip install -r requirements.txt
+
+# Set working directory
+WORKDIR /app
+COPY . /app
+
+# Start MySQL service and drop into a Bash shell
+CMD service mysql start && bash && apt-get update && source env_bash.sh && cat setup_db.sh | mysql
